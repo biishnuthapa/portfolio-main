@@ -21,7 +21,7 @@ export function Hero() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-5xl md:text-7xl font-bold text-white mb-6"
         >
-          John Doe
+          Bishnu Thapa
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ export function Hero() {
           className="relative inline-block mb-8"
         >
           <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-transparent bg-clip-text animate-pulse">
-            Full Stack Developer | UI/UX Designer
+          I make ideas & things alive
           </span>
           <div className="absolute -inset-1 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] rounded-lg opacity-30 blur"></div>
         </motion.div>
@@ -54,9 +54,14 @@ export function Hero() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button variant="outline" size="icon" className="rounded-full border-[#4ECDC4] text-white hover:bg-[#4ECDC4] hover:border-transparent">
-                <Icon className="h-5 w-5" />
-              </Button>
+             <Button 
+  variant="outline" 
+  size="icon" 
+  className="rounded-full border-[#4ECDC4] bg-[#9F2B55] text-white hover:bg-[#4ECDC4] hover:border-transparent"
+>
+  <Icon className="h-5 w-5" />
+</Button>
+
             </motion.div>
           ))}
         </motion.div>

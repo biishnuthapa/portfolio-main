@@ -82,15 +82,11 @@ export default function Home() {
       ],
       projects: [
         {
-          title: "NFT Marketplace",
-          description: "Decentralized platform for trading digital assets",
+          title: "Hospitality NFT",
+          description: "At Koinon.Tech, I played a crucial role in Fullstack web3 application using Next.js and web3 libraries. Our focus was on to build hotel booking dapp which should mint NFT for each booking made by customer.The smartcontract was deployed on polygon mainent.",
           image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
         },
-        {
-          title: "DeFi Dashboard",
-          description: "Decentralized finance portfolio tracker",
-          image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        },
+        
       ],
     },
   };
@@ -105,7 +101,7 @@ export default function Home() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="py-20 bg-[#081E21]"
+        className="py-20 bg-[#1A484F]"
       >
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">About Me</h2>
