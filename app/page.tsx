@@ -9,8 +9,8 @@ import { Download, ExternalLink, Github, Linkedin, Mail, Twitter } from "lucide-
 import { Hero } from "@/components/sections/hero";
 import Image from 'next/image';
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from 'next/link';
 
 export default function Home() {
   const [name, setName] = useState('');
@@ -35,21 +35,23 @@ export default function Home() {
   const techCategories = {
     wordpress: {
       skills: [
-        { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" },
+        { name: "Elementor", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT78j4LYEkoNtNOgCHTEn122ylZ8uPvCeeV2g&s" },
         { name: "PHP", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" },
         { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
         { name: "WooCommerce", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/woocommerce/woocommerce-plain.svg" },
       ],
       projects: [
         {
-          title: "E-Commerce Store",
-          description: "Custom WooCommerce solution with advanced product filtering",
-          image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          title: "AIECOM Solutions: Digital Marketing Website",
+          description: "Designed and enhanced the website for AIECOM Solutions, a digital marketing agency specializing in SEO, branding, website redesign, lead generation, and more. Improved website performance for faster loading and seamless user experience. Integrated Google Calendar with an AI-powered bot to automate meeting scheduling, streamlining client interactions. The website features a user-centric design, service-focused content, detailed project showcases, customizable pricing plans, client testimonials, and an intuitive contact form, ensuring businesses can easily scale their online presence.",
+          image: "/images/aiecomsolutions.png",
+          url: "https://aiecomsolutions.com"
         },
         {
-          title: "Business Directory",
-          description: "WordPress multisite network for local businesses",
-          image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          title: "Renomax Renovation: Transforming Spaces with Custom Joinery",
+          description: "I designed and developed a professional, user-friendly website for Renomax Renovation, a Sydney-based custom joinery company specializing in transforming spaces with bespoke craftsmanship. The website showcases their expertise through a structured 5-step process for custom joinery projects, detailed service pages highlighting their commitment to sustainability, safety standards, and quality management, and a visually appealing portfolio of completed kitchen designs. It includes engaging testimonials to build credibility and clear calls-to-action for personalized consultations and free quotes. The website effectively communicates Renomax Renovation's dedication to quality craftsmanship and sustainable practices, establishing them as a trusted leader in the industry.",
+          image: "images/renomaxrenovation.png",
+          url: "https://renomaxrenovation.com.au"
         },
       ],
     },
@@ -57,19 +59,15 @@ export default function Home() {
       skills: [
         { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
         { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-        { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-        { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+        { name: "Github", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThA4b3y1JdS5O-6bOPQGEUWjmsuowssT70pg&s" },
+        { name: "AWS", logo: "https://download.logo.wine/logo/Amazon_Web_Services/Amazon_Web_Services-Logo.wine.png" },
       ],
       projects: [
         {
-          title: "SaaS Platform",
-          description: "Full-stack application with real-time collaboration features",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        },
-        {
-          title: "Analytics Dashboard",
-          description: "Real-time data visualization platform",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          title: "HabitUp: Your Companion for Building Daily Productivity",
+          description: "HabitUp is a web app designed to help users optimize their daily routines and achieve their goals. It tracks wake-up and sleep times, work hours, exercise, and meditation, providing insights through productivity percentages and progress graphs. With features like Pomodoro timers, daily evaluations, a leaderboard, and a supportive community, HabitUp empowers users to cultivate healthy habits and improve time management. The platform fosters consistency and motivation, making productivity a rewarding journey.",
+          image: "images/habitup.png",
+          url: "https://habitup.me"
         },
       ],
     },
@@ -77,16 +75,16 @@ export default function Home() {
       skills: [
         { name: "Solidity", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" },
         { name: "Web3.js", logo: "https://seeklogo.com/images/W/web3js-logo-62DEE79B50-seeklogo.com.png" },
-        { name: "Ethereum", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ethereum/ethereum-original.svg" },
-        { name: "IPFS", logo: "https://seeklogo.com/images/I/ipfs-logo-1BC6DD98A4-seeklogo.com.png" },
+        { name: "NFT", logo: "https://png.pngtree.com/png-vector/20220717/ourmid/pngtree-nft-crypto-token-png-image-png-image_5999373.png" },
+        { name: "IPFS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ipfs-logo-1024-ice-text.png/768px-Ipfs-logo-1024-ice-text.png" },
       ],
       projects: [
         {
           title: "Hospitality NFT",
           description: "At Koinon.Tech, I played a crucial role in Fullstack web3 application using Next.js and web3 libraries. Our focus was on to build hotel booking dapp which should mint NFT for each booking made by customer.The smartcontract was deployed on polygon mainent.",
-          image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          image: "/images/hospitalitynft.png",
+          url: "https://nft-hospitality.vercel.app/"
         },
-        
       ],
     },
   };
@@ -127,24 +125,15 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4">
           <Tabs defaultValue="wordpress" className="w-full">
             <TabsList className="flex justify-center gap-4 mb-12">
-              <TabsTrigger 
-                value="wordpress"
-                className="px-6 py-3 text-lg font-semibold rounded-full bg-[#081E21] text-white hover:bg-[#4ECDC4] data-[state=active]:bg-[#4ECDC4]"
-              >
-                WordPress
-              </TabsTrigger>
-              <TabsTrigger 
-                value="web2"
-                className="px-6 py-3 text-lg font-semibold rounded-full bg-[#081E21] text-white hover:bg-[#4ECDC4] data-[state=active]:bg-[#4ECDC4]"
-              >
-                Web 2.0
-              </TabsTrigger>
-              <TabsTrigger 
-                value="web3"
-                className="px-6 py-3 text-lg font-semibold rounded-full bg-[#081E21] text-white hover:bg-[#4ECDC4] data-[state=active]:bg-[#4ECDC4]"
-              >
-                Web 3.0
-              </TabsTrigger>
+              {Object.keys(techCategories).map((category) => (
+                <TabsTrigger 
+                  key={category}
+                  value={category}
+                  className="px-6 py-3 text-lg font-semibold rounded-full bg-[#081E21] text-white hover:bg-[#4ECDC4] data-[state=active]:bg-[#4ECDC4]"
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </TabsTrigger>
+              ))}
             </TabsList>
 
             {Object.entries(techCategories).map(([key, category]) => (
@@ -206,9 +195,11 @@ export default function Home() {
                             <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                             <p className="text-[#F6F5FC] mb-4">{project.description}</p>
                             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                              <Button variant="secondary" className="w-full bg-[#4ECDC4] hover:bg-[#4ECDC4]/90 text-white">
-                                View Project <ExternalLink className="ml-2 h-4 w-4" />
-                              </Button>
+                              <Link href={project.url} target="_blank" rel="noopener noreferrer">
+                                <Button variant="secondary" className="w-full bg-[#4ECDC4] hover:bg-[#4ECDC4]/90 text-white">
+                                  View Project <ExternalLink className="ml-2 h-4 w-4" />
+                                </Button>
+                              </Link>
                             </motion.div>
                           </div>
                         </Card>
