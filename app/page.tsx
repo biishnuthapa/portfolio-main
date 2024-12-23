@@ -6,16 +6,30 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Download, ExternalLink, Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { Hero } from "@/components/sections/hero";
 import Image from 'next/image';
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from 'next/link';
+import { useEmailService } from "@/hooks/use-email-service";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import { techCategories } from "@/lib/constants/tech-categories";
+import { Logo } from "@/components/ui/logo";
 
 export default function Home() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const { sendEmail, isSubmitting } = useEmailService();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const success = await sendEmail({ name, email, message });
+    if (success) {
+      setName('');
+      setEmail('');
+      setMessage('');
+    }
+  };
 
   const container = {
     hidden: { opacity: 0 },
@@ -32,66 +46,60 @@ export default function Home() {
     show: { opacity: 1, y: 0 }
   };
 
-  const techCategories = {
-    wordpress: {
-      skills: [
-        { name: "Elementor", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT78j4LYEkoNtNOgCHTEn122ylZ8uPvCeeV2g&s" },
-        { name: "PHP", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" },
-        { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-        { name: "WooCommerce", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/woocommerce/woocommerce-plain.svg" },
-      ],
-      projects: [
-        {
-          title: "AIECOM Solutions: Digital Marketing Website",
-          description: "Designed and enhanced the website for AIECOM Solutions, a digital marketing agency specializing in SEO, branding, website redesign, lead generation, and more. Improved website performance for faster loading and seamless user experience. Integrated Google Calendar with an AI-powered bot to automate meeting scheduling, streamlining client interactions. The website features a user-centric design, service-focused content, detailed project showcases, customizable pricing plans, client testimonials, and an intuitive contact form, ensuring businesses can easily scale their online presence.",
-          image: "/images/aiecomsolutions.png",
-          url: "https://aiecomsolutions.com"
-        },
-        {
-          title: "Renomax Renovation: Transforming Spaces with Custom Joinery",
-          description: "I designed and developed a professional, user-friendly website for Renomax Renovation, a Sydney-based custom joinery company specializing in transforming spaces with bespoke craftsmanship. The website showcases their expertise through a structured 5-step process for custom joinery projects, detailed service pages highlighting their commitment to sustainability, safety standards, and quality management, and a visually appealing portfolio of completed kitchen designs. It includes engaging testimonials to build credibility and clear calls-to-action for personalized consultations and free quotes. The website effectively communicates Renomax Renovation's dedication to quality craftsmanship and sustainable practices, establishing them as a trusted leader in the industry.",
-          image: "images/renomaxrenovation.png",
-          url: "https://renomaxrenovation.com.au"
-        },
-      ],
-    },
-    web2: {
-      skills: [
-        { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-        { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-        { name: "Github", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThA4b3y1JdS5O-6bOPQGEUWjmsuowssT70pg&s" },
-        { name: "AWS", logo: "https://download.logo.wine/logo/Amazon_Web_Services/Amazon_Web_Services-Logo.wine.png" },
-      ],
-      projects: [
-        {
-          title: "HabitUp: Your Companion for Building Daily Productivity",
-          description: "HabitUp is a web app designed to help users optimize their daily routines and achieve their goals. It tracks wake-up and sleep times, work hours, exercise, and meditation, providing insights through productivity percentages and progress graphs. With features like Pomodoro timers, daily evaluations, a leaderboard, and a supportive community, HabitUp empowers users to cultivate healthy habits and improve time management. The platform fosters consistency and motivation, making productivity a rewarding journey.",
-          image: "images/habitup.png",
-          url: "https://habitup.me"
-        },
-      ],
-    },
-    web3: {
-      skills: [
-        { name: "Solidity", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" },
-        { name: "Web3.js", logo: "https://seeklogo.com/images/W/web3js-logo-62DEE79B50-seeklogo.com.png" },
-        { name: "NFT", logo: "https://png.pngtree.com/png-vector/20220717/ourmid/pngtree-nft-crypto-token-png-image-png-image_5999373.png" },
-        { name: "IPFS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ipfs-logo-1024-ice-text.png/768px-Ipfs-logo-1024-ice-text.png" },
-      ],
-      projects: [
-        {
-          title: "Hospitality NFT",
-          description: "At Koinon.Tech, I played a crucial role in Fullstack web3 application using Next.js and web3 libraries. Our focus was on to build hotel booking dapp which should mint NFT for each booking made by customer.The smartcontract was deployed on polygon mainent.",
-          image: "/images/hospitalitynft.png",
-          url: "https://nft-hospitality.vercel.app/"
-        },
-      ],
-    },
-  };
-
   return (
     <main className="min-h-screen">
-      <Hero />
+      {/* Hero Section */}
+    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-[#1A484F] to-[#081E21]">
+      <div className="max-w-6xl mx-auto text-center">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center"
+        >
+          <Logo />
+        </motion.div>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-5xl md:text-7xl font-bold text-white mb-6"
+        >
+          Bishnu Thapa
+        </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="relative inline-block mb-8"
+        >
+          <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-transparent bg-clip-text animate-pulse">
+            I make ideas & things alive
+          </span>
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] rounded-lg opacity-30 blur"></div>
+        </motion.div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="text-lg text-[#F6F5FC] max-w-2xl mx-auto mb-12"
+        >
+          Crafting beautiful, user-centric digital experiences with modern technologies
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="flex justify-center gap-4 mb-12"
+        >
+          {/* Using SocialLink component */}
+          <SocialLink href={SOCIAL_LINKS.github} icon={Github} />
+          <SocialLink href={SOCIAL_LINKS.linkedin} icon={Linkedin} />
+          <SocialLink href={SOCIAL_LINKS.twitter} icon={Twitter} />
+          <SocialLink href={SOCIAL_LINKS.mail} icon={Mail} />
+        </motion.div>
+      </div>
+    </section>
 
       {/* About Section */}
       <motion.section 
@@ -109,14 +117,19 @@ export default function Home() {
             intuitive user experiences and scalable architectures.
           </p>
           <motion.div 
-            className="flex justify-center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button className="bg-[#4ECDC4] hover:bg-[#4ECDC4]/90 text-white">
-              <Download className="mr-2 h-4 w-4" /> Download Resume
-            </Button>
-          </motion.div>
+  className="flex justify-center"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <a 
+    href="/images/documents/Bishnu-Thapa-Resume.pdf" 
+    download="Resume.pdf" 
+    className="bg-[#4ECDC4] hover:bg-[#4ECDC4]/90 text-white flex items-center px-4 py-2 rounded"
+  >
+    <Download className="mr-2 h-4 w-4" /> Download Resume
+  </a>
+</motion.div>
+
         </div>
       </motion.section>
 
@@ -215,6 +228,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <motion.section 
+        id="contact"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -223,7 +237,8 @@ export default function Home() {
       >
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">Get in Touch</h2>
-          <motion.div 
+          <motion.form 
+            onSubmit={handleSubmit}
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -237,6 +252,7 @@ export default function Home() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="bg-[#081E21] border-[#4ECDC4] text-white"
+                  required
                 />
               </motion.div>
               <motion.div whileHover={{ scale: 1.02 }}>
@@ -246,6 +262,7 @@ export default function Home() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-[#081E21] border-[#4ECDC4] text-white"
+                  required
                 />
               </motion.div>
               <motion.div whileHover={{ scale: 1.02 }}>
@@ -255,15 +272,20 @@ export default function Home() {
                   onChange={(e) => setMessage(e.target.value)}
                   className="bg-[#081E21] border-[#4ECDC4] text-white"
                   rows={5}
+                  required
                 />
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button className="w-full bg-[#4ECDC4] hover:bg-[#4ECDC4]/90 text-white">
-                  Send Message
+                <Button 
+                  type="submit"
+                  className="w-full bg-[#4ECDC4] hover:bg-[#4ECDC4]/90 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </motion.div>
             </div>
-          </motion.div>
+          </motion.form>
         </div>
       </motion.section>
 
@@ -271,23 +293,38 @@ export default function Home() {
       <footer className="py-8 bg-[#081E21]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center">
-            <p className="text-[#F6F5FC]">© 2024 John Doe. All rights reserved.</p>
+            <p className="text-[#F6F5FC]">© 2024 Bishnu Thapa. All rights reserved.</p>
             <div className="flex gap-4">
-              {[Github, Linkedin, Twitter].map((Icon, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button variant="ghost" size="icon" className="text-[#F6F5FC] hover:text-white hover:bg-[#4ECDC4]">
-                    <Icon className="h-5 w-5" />
-                  </Button>
-                </motion.div>
-              ))}
+              <SocialLink href={SOCIAL_LINKS.github} icon={Github} />
+              <SocialLink href={SOCIAL_LINKS.linkedin} icon={Linkedin} />
+              <SocialLink href={SOCIAL_LINKS.twitter} icon={Twitter} />
+              <SocialLink href={SOCIAL_LINKS.mail} icon={Mail} />
+
             </div>
           </div>
         </div>
       </footer>
     </main>
+  );
+}
+
+interface SocialLinkProps {
+  href: string;
+  icon: React.ElementType;
+}
+
+function SocialLink({ href, icon: Icon }: SocialLinkProps) {
+  return (
+    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+      <Link href={href} target="_blank" rel="noopener noreferrer">
+      <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full border-[#4ECDC4] bg-[#9F2B55] text-white hover:bg-[#4ECDC4] hover:border-transparent"
+        >
+          <Icon className="h-5 w-5" />
+        </Button>
+      </Link>
+    </motion.div>
   );
 }
