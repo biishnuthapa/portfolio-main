@@ -33,7 +33,7 @@ export const techCategories = {
           title: "HabitUp: Your Companion for Building Daily Productivity",
           description: "HabitUp is a web app designed to help users optimize their daily routines and achieve their goals. It tracks wake-up and sleep times, work hours, exercise, and meditation, providing insights through productivity percentages and progress graphs. With features like Pomodoro timers, daily evaluations, a leaderboard, and a supportive community, HabitUp empowers users to cultivate healthy habits and improve time management. The platform fosters consistency and motivation, making productivity a rewarding journey.",
           image: "images/habitup.png",
-          url: "https://habitup.vercel.app"
+          url: "https://habitup.me"
         },
       ],
     },
@@ -49,7 +49,7 @@ export const techCategories = {
           title: "Hospitality NFT",
           description: "At Koinon.Tech, I played a crucial role in Fullstack web3 application using Next.js and web3 libraries. Our focus was on to build hotel booking dapp which should mint NFT for each booking made by customer.The smartcontract was deployed on polygon mainent.",
           image: "/images/hospitalitynft.png",
-          url: "https://hospitality-nft.vercel.app"
+          url: "https://hospitaitynft.vercel.app/"
         },
       ],
     },
