@@ -15,7 +15,7 @@ export const techCategories = {
         },
         {
           title: "Renomax Renovation: Transforming Spaces with Custom Joinery",
-          description: "I designed and developed a professional, user-friendly website for Renomax Renovation, a Sydney-based custom joinery company specializing in transforming spaces with bespoke craftsmanship. The website showcases their expertise through a structured 5-step process for custom joinery projects, detailed service pages highlighting their commitment to sustainability, safety standards, and quality management, and a visually appealing portfolio of completed kitchen designs. It includes engaging testimonials to build credibility and clear calls-to-action for personalized consultations and free quotes. The website effectively communicates Renomax Renovation's dedication to quality craftsmanship and sustainable practices, establishing them as a trusted leader in the industry.",
+          description: "I designed and developed a professional, user-friendly website for Renomax Renovation, a Sydney-based custom joinery company specializing in transforming spaces with bespoke craftsmanship. The website showcases their expertise through a structured 5-step process for custom joinery projects, detailed service pages highlighting their commitment to sustainability, safety standards, and quality management, and a visually appealing portfolio of completed kitchen designs. It includes engaging testimonials to build credibility and clear calls-to-action for personalized consultations and free quotes.",
           image: "images/renomaxrenovation.png",
           url: "https://renomaxrenovation.com.au"
         },
